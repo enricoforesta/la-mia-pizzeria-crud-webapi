@@ -1,0 +1,43 @@
+html {
+    font-size: 14px;
+}
+
+@media (min-width: 768px) {
+    html {
+        font-size: 16px;
+    }
+}
+
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    margin-bottom: 60px;
+    background-color: var(--my-bg-color-primary);
+    color: var(--my-text-color-primary);
+}
+/*variabili*/
+:root {
+    --my-text-color-primary: red;
+    --my-text-color-secondary: white;
+    --my-bg-color-primary: #383838;
+}
+
+
+/*comuni*/
+
+Header > nav,
+thead > tr {
+    color: var(--my-text-color-primary);
+}
+tr {
+    border-style: hidden;
+    color: var(--my-text-color-secondary)
+}
+
+a{
+    color: currentColor !important;
+    text-decoration:none;
+}

@@ -1,0 +1,30 @@
+﻿<nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-text  box-shadow m-3">
+    <div class="container-fluid">
+        <img style="width: 50px; height: 50px" src="~/img/Icona_Pizzeria_da_Gino.png" class="mx-2" />
+        <a class="navbar-brand text-uppercase me-5" asp-area="" asp-controller="Home" asp-action="Index">Pizzeria da Gino</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+            <ul class="navbar-nav me-auto">
+                <li class="nav-item">
+                    <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                </li>
+                <li class="nav-item ">
+                    <a class="nav-link " asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                </li>
+
+            </ul>
+            <ul  class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link" aria-current="page" href="@Url.Action("Index", "Pizza")">Dash</a>
+                </li>
+                <li>
+                    <!-- code omitted -->
+                    <partial name="_LoginPartial" />
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>

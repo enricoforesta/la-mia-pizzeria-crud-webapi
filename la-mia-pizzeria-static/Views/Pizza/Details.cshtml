@@ -1,0 +1,22 @@
+﻿@model Pizza
+@{
+    ViewData["Title"] = "Dettaglio Pizza";
+}
+<div class="text-end">
+    <a href="@Url.Action("index", "Pizza")" class="fs-2 me-md-2 text-danger"><i class="bi bi-arrow-left"></i></a>
+</div>
+<div class="text-center container-xxl">
+
+    <h1 class="mb-4"> @ViewData["Title"]</h1>
+
+    <ul class="list-unstyled d-grid gap-3 text-white">
+        <li>Id: @Model.Id</li>
+        <li>Nome: @Model.Name</li>
+        <li>Prezzo: @Model.Price.ToString("0.00")€</li>
+        <li>Descrizione: @Model.Description</li>
+        <li>Categoria: @Model.AllCategory()</li>
+        <li>Ingredienti: @Model.AllIngredient()</li>
+    </ul>
+
+</div>
+

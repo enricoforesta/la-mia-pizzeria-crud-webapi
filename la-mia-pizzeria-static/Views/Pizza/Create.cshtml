@@ -1,0 +1,71 @@
+﻿@model PizzaFormModel
+
+<div class="text-end">
+    <a href="@Url.Action("index", "Pizza")" class="fs-2 me-md-2 text-danger"><i class="bi bi-arrow-left"></i></a>
+</div>
+
+<div class="text-center container-xxl">
+    <form asp-controller="Pizza" asp-action="Create" method="post">
+        @Html.AntiForgeryToken()
+        <div class="m-5">
+            <label for="Name" class="form-label "><strong>Nome Prodotto:</strong></label>
+            <input asp-for="Pizza.Name" type="text" class="form-control w-50 my-0 mx-auto" id="Name" placeholder="Inserisci nome del prodotto">
+            <span asp-validation-for="Pizza.Name" class=" d-inline-block mt-2 text-light bg-primary text-uppercase px-5"></span>
+        </div>
+        <div class="m-5">
+            <label for="Description" class="form-label"><strong>Descrizione Prodotto:</strong></label>
+            <textarea asp-for="Pizza.Description" class="form-control w-50 my-0 mx-auto" id="Description" style="height: 100px" placeholder="Inserisci descrizione del prodotto"></textarea>
+            <span asp-validation-for="Pizza.Description" class="d-inline-block mt-2 text-light bg-primary text-uppercase px-5"></span>
+        </div>
+        <div class="m-5">
+            <label class="form-label" for="Category"><strong> Categoria:</strong></label>
+            <select asp-for="Pizza.CategoryId" class="form-control w-50 my-0 mx-auto" id="Category" rows="5">
+                <option value="">Nessuna categoria</option>
+                @foreach (Category category in Model.Categories)
+                {
+                    @if (Model.Pizza.CategoryId == category.Id)
+                    {
+                        <option value="@category.Id" selected>@category.Name</option>
+                    }
+                    else
+                    {
+                        <option value="@category.Id">@category.Name</option>
+                    }
+                }
+            </select>
+            <span asp-validation-for="Pizza.CategoryId" class="d-inline-block mt-2 text-light bg-primary text-uppercase px-5"></span>
+        </div>
+        @*<div class="mb-5">
+                <label class="form-label" for="Ingredient"><strong> Ingredienti:</strong></label>
+                <select asp-for="SelectedIngredients"
+                        multiple="multiple"
+                        size="10"
+                        asp-items="@Model.Ingredients"
+                        class="form-control w-50 my-0 mx-auto" id="Ingredient">
+                </select>
+                <span asp-validation-for="Pizza.CategoryId" class="d-inline-block mt-2 text-light bg-primary text-uppercase px-5"></span>
+            </div>*@
+        <div class="mb-5">
+            <label class="form-label d-block" for="Ingredient"><strong> Ingredienti:</strong></label>
+            <div class="d-flex flex-wrap align-items-center justify-content-center gap-2" >
+                @for (int i = 0; i < Model.Ingredients.Count; i++)
+                {
+
+                    <input type="checkbox" name="SelectedIngredients" value="@Model.Ingredients[i].Value"
+                           @(Model.SelectedIngredients.Contains(Model.Ingredients[i].Value) ? "checked" : "") />
+                    @Model.Ingredients[i].Text
+                }
+            </div>
+
+            <span asp-validation-for="Pizza.CategoryId" class="d-inline-block mt-2 text-light bg-primary text-uppercase px-5"></span>
+        </div>
+        <div class="m-5">
+            <label for="Price" class="form-label"><strong>Prezzo Prodotto:</strong></label>
+            <input asp-for="Pizza.Price" step="0.01" class="form-control w-50 my-0 mx-auto" id="Price" placeholder="Prezzo">
+            <span asp-validation-for="Pizza.Price" class="d-inline-block mt-2 text-light bg-primary text-uppercase px-5"></span>
+        </div>
+        <div class="text-end">
+            <input type="submit" class="btn btn-primary me-2 mb-5" value="Crea Prodotto">
+        </div>
+    </form>
+</div>
