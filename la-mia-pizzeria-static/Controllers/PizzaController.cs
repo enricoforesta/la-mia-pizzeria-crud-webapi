@@ -41,9 +41,10 @@ namespace la_mia_pizzeria_static.Controllers
             {
                 data.Categories = PizzaManager.GetAllCategory();
                 data.Ingredients = PizzaFormModel.CreateIngredients();
+                data.SetImage();
                 return View("Create", data);
             }
-
+            data.SetImage();
             PizzaManager.InsertPizza(data.Pizza, data.SelectedIngredients);
             return RedirectToAction("Index");
         }
@@ -69,8 +70,10 @@ namespace la_mia_pizzeria_static.Controllers
             {
                 data.Categories = PizzaManager.GetAllCategory();
                 data.Ingredients = PizzaFormModel.CreateIngredients();
+                data.SetImage();
                 return View("Update", data);
             }
+            data.SetImage();
             if(!PizzaManager.UpdatePizza(id, data.Pizza?.Name, data.Pizza?.Description, data.Pizza.Price, data.Pizza?.CategoryId, data.SelectedIngredients)) return NotFound();
             return RedirectToAction("Index");
         }

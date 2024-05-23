@@ -5,7 +5,7 @@
 </div>
 
 <div class="text-center container-xxl">
-    <form asp-controller="Pizza" asp-action="Create" method="post">
+    <form asp-controller="Pizza" asp-action="Create" method="post" enctype="multipart/form-data">
         @Html.AntiForgeryToken()
         <div class="m-5">
             <label for="Name" class="form-label "><strong>Nome Prodotto:</strong></label>
@@ -35,16 +35,6 @@
             </select>
             <span asp-validation-for="Pizza.CategoryId" class="d-inline-block mt-2 text-light bg-primary text-uppercase px-5"></span>
         </div>
-        @*<div class="mb-5">
-                <label class="form-label" for="Ingredient"><strong> Ingredienti:</strong></label>
-                <select asp-for="SelectedIngredients"
-                        multiple="multiple"
-                        size="10"
-                        asp-items="@Model.Ingredients"
-                        class="form-control w-50 my-0 mx-auto" id="Ingredient">
-                </select>
-                <span asp-validation-for="Pizza.CategoryId" class="d-inline-block mt-2 text-light bg-primary text-uppercase px-5"></span>
-            </div>*@
         <div class="mb-5">
             <label class="form-label d-block" for="Ingredient"><strong> Ingredienti:</strong></label>
             <div class="d-flex flex-wrap align-items-center justify-content-center gap-2" >
@@ -56,8 +46,14 @@
                     @Model.Ingredients[i].Text
                 }
             </div>
-
             <span asp-validation-for="Pizza.CategoryId" class="d-inline-block mt-2 text-light bg-primary text-uppercase px-5"></span>
+        </div>
+        <div class="mb-5">
+            <div class="form-field">
+                <img src="@Model.Pizza.ImgSrc">
+                <label asp-for="ImageFormFile">Carica un immagine</label>
+                <input type="file" asp-for="ImageFormFile" />
+            </div>
         </div>
         <div class="m-5">
             <label for="Price" class="form-label"><strong>Prezzo Prodotto:</strong></label>

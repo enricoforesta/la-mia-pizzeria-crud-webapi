@@ -13,8 +13,6 @@ namespace la_mia_pizzeria_static.Models
         [Required(ErrorMessage = "La descrizione è necessaria")]
         public string? Description { get; set; }
 
-        public string? PizzaImg { get; set; }
-
         [Required(ErrorMessage = "Il prezzo è necessario")]
         [Range(0, float.MaxValue, ErrorMessage = "Il prezzo deve essere maggiore a zero")]
         public float Price { get; set; }
@@ -24,13 +22,15 @@ namespace la_mia_pizzeria_static.Models
 
         public List<Ingredient>? Ingredients { get; set; }
 
+        public byte[]? ImageFile { get; set; }
+        public string ImgSrc => ImageFile != null ? $"data:image/png;base64,{Convert.ToBase64String(ImageFile)}" : "";
+
         public Pizza() { }
 
-        public Pizza(string name, string description, string pizzaImg, float price, List<Ingredient> ingredients)
+        public Pizza(string name, string description, float price, List<Ingredient> ingredients)
         {
             this.Name = name;
             this.Description = description;
-            this.PizzaImg = pizzaImg;
             this.Price = price;
             this.Ingredients = ingredients;
         }

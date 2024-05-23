@@ -48,7 +48,8 @@
                             <td>@item.Name</td>
                             <td>@item.Description</td>
                             <td>@item.Price.ToString("0.00")€</td>
-                            @if (String.IsNullOrEmpty(item.PizzaImg))
+
+                            @if (item.ImageFile == null)
                             {
                                 <td>
                                     <img style="width: 150px; height: 100px" src="~/img/image-nofound.jpg" alt=@item.Name>
@@ -57,7 +58,7 @@
                             else
                             {
                                 <td>
-                                    <img style="width: 150px; height: 100px" src=@Url.Content(item.PizzaImg) alt=@item.Name>
+                                    <img style="width: 150px; height: 100px" src="@item.ImgSrc" alt=@item.Name>
                                 </td>
                             }
                             <td>

@@ -47,13 +47,20 @@
                 }
             </div>
         </div>
-            <div class="m-5">
-                <label for="Price" class="form-label"><strong>Prezzo Prodotto:</strong></label>
-                <input asp-for="Pizza.Price" step="0.01" class="form-control w-50 my-0 mx-auto" id="Price" placeholder="Prezzo">
-                <span asp-validation-for="Pizza.Price" class="d-inline-block mt-2 text-light bg-primary text-uppercase px-5"></span>
+        <div class="mb-5">
+            <div class="form-field">
+                @*<img src="@Model.Pizza.ImgSrc">*@
+                <label asp-for="ImageFormFile" class="form-label d-block" for="image"> <strong> Carica un immagine</strong></label>
+                <input type="file" asp-for="ImageFormFile" id="image" />
             </div>
-            <div class="text-end">
-                <input type="submit" class="btn btn-primary me-md-2 mb-5" value="Aggiorna Prodotto">
-            </div>
+        </div>
+        <div class="m-5">
+            <label for="Price" class="form-label"><strong>Prezzo Prodotto:</strong></label>
+            <input asp-for="Pizza.Price" step="0.01" class="form-control w-50 my-0 mx-auto" id="Price" placeholder="Prezzo">
+            <span asp-validation-for="Pizza.Price" class="d-inline-block mt-2 text-light bg-primary text-uppercase px-5"></span>
+        </div>
+        <div class="text-end">
+            <input type="submit" class="btn btn-primary me-md-2 mb-5" value="Aggiorna Prodotto">
+        </div>
     </form>
 </div>

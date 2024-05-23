@@ -1,5 +1,6 @@
 ﻿using la_mia_pizzeria_static.Controllers;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.Extensions.Hosting;
 
 namespace la_mia_pizzeria_static.Models
 {
@@ -9,7 +10,9 @@ namespace la_mia_pizzeria_static.Models
         public List<Category>? Categories { get; set; }
 
         public List<SelectListItem>? Ingredients { get; set; }
-        public List<string> SelectedIngredients { get; set; }
+        public List<string>? SelectedIngredients { get; set; }
+
+        public IFormFile? ImageFormFile { get; set; }
         public PizzaFormModel() 
         {
            
@@ -33,6 +36,17 @@ namespace la_mia_pizzeria_static.Models
                 list.Add(new SelectListItem(ingredient.Name, ingredient.Id.ToString()));
             }
             return list;
+        }
+        public byte[] SetImage()
+        {
+            if (ImageFormFile == null)
+                return null;
+
+            using var stream = new MemoryStream();
+            this.ImageFormFile?.CopyTo(stream);
+            Pizza.ImageFile = stream.ToArray();
+
+            return Pizza.ImageFile;
         }
     }
 }
