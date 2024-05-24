@@ -62,7 +62,7 @@ namespace la_mia_pizzeria_static.Controllers
             db.Pizza?.Add(data);
             db.SaveChanges();
         }
-        public static bool UpdatePizza(int id, string name, string description, float price, int? categoryId, List<string> selectedIngredients)
+        public static bool UpdatePizza(int id, string name, string description, float price, int? categoryId, List<string> selectedIngredients, byte[] image)
         {
             using PizzaContext db = new PizzaContext();
             var pizza = db.Pizza?.Where(p => p.Id == id).Include(p => p.Ingredients).FirstOrDefault();
@@ -72,6 +72,7 @@ namespace la_mia_pizzeria_static.Controllers
             pizza.Price = price;
             pizza.CategoryId = categoryId;
             pizza.Ingredients.Clear();
+            pizza.ImageFile = image;
             if(selectedIngredients != null)
             {
                 foreach (var ingredientId in selectedIngredients)

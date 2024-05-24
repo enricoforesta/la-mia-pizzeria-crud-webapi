@@ -28,24 +28,24 @@ namespace la_mia_pizzeria_static.Controllers
 
         [HttpPost]
         
-        public IActionResult CreatePost([FromBody] Pizza pizza)
+        public IActionResult CreatePizza([FromBody] Pizza pizza)
         {
             PizzaManager.InsertPizza(pizza, null);
             return Ok();
         }
 
         [HttpPut]
-        public IActionResult UpdatePost(int id, [FromBody] Pizza pizza)
+        public IActionResult UpdatePizza(int id, [FromBody] Pizza pizza)
         {
             var oldPizza = PizzaManager.GetIdPizze(id);
             if (oldPizza == null)
                 return NotFound("ERRORE");
-            PizzaManager.UpdatePizza(id, pizza.Name, pizza.Description,pizza.Price, pizza.CategoryId, null);
+            PizzaManager.UpdatePizza(id, pizza.Name, pizza.Description,pizza.Price, pizza.CategoryId, null, pizza.ImageFile);
             return Ok();
         }
 
         [HttpDelete]
-        public IActionResult DeletePost(int id)
+        public IActionResult DeletePizza(int id)
         {
             bool found = PizzaManager.DeletePizza(id);
             if (found)
